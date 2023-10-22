@@ -24,7 +24,7 @@ model User {
 }
 
 enum BankAccountType {
-  CHECIKNG
+  CHECKING
   INVESTMENT
   CASH
 
