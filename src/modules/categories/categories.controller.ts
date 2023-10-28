@@ -8,9 +8,9 @@ import {
   Post,
 } from '@nestjs/common';
 import { ActiveUserId } from 'src/shared/decorators/activeUserId';
-import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { CategoriesService } from './services/categories.service';
 
 @Controller('categories')
 export class CategoriesController {
