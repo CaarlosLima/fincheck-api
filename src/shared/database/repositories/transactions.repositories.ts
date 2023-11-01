@@ -11,7 +11,7 @@ export class TransactionsRepository {
   }
 
   findFirst(findFirstDto: Prisma.TransactionFindFirstArgs) {
-    return this.prismaService.transaction.findMany(findFirstDto);
+    return this.prismaService.transaction.findFirst(findFirstDto);
   }
 
   findMany(findManyDto: Prisma.TransactionFindManyArgs) {
