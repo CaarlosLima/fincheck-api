@@ -2,28 +2,47 @@ import { Injectable } from '@nestjs/common';
 import { CategoriesRepository } from 'src/shared/database/repositories/categories.repositories';
 import { CreateCategoryDto } from '../dto/create-category.dto';
 import { UpdateCategoryDto } from '../dto/update-category.dto';
+import { ValidateCategoryOwnershipService } from './validate-category-ownership.service';
 
 @Injectable()
 export class CategoriesService {
-  constructor(private readonly categoriesRepo: CategoriesRepository) {}
+  constructor(
+    private readonly categoriesRepo: CategoriesRepository,
+    private readonly validateCategoryOwnershipService: ValidateCategoryOwnershipService,
+  ) {}
 
-  create(createCategoryDto: CreateCategoryDto) {
-    return createCategoryDto;
+  create(userId: string, createCategoryDto: CreateCategoryDto) {
+    const { icon, name, type } = createCategoryDto;
+
+    return this.categoriesRepo.create({
+      data: { icon, name, type, userId },
+    });
   }
 
   findAllByUserId(userId: string) {
     return this.categoriesRepo.findMany({ where: { userId } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} category`;
+  async update(
+    userId: string,
+    categoryId: string,
+    updateCategoryDto: UpdateCategoryDto,
+  ) {
+    await this.validateCategoryOwnershipService.validate(userId, categoryId);
+
+    const { icon, name, type } = updateCategoryDto;
+
+    return this.categoriesRepo.update({
+      where: { id: categoryId },
+      data: { icon, name, type },
+    });
   }
 
-  update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category: ${updateCategoryDto}`;
-  }
+  async remove(userId: string, categoryId: string) {
+    await this.validateCategoryOwnershipService.validate(userId, categoryId);
 
-  remove(id: number) {
-    return `This action removes a #${id} category`;
+    await this.categoriesRepo.delete({ where: { id: categoryId } });
+
+    return null;
   }
 }
