@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import 'tsconfig-paths/register';
 
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
