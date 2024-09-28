@@ -17,8 +17,7 @@ export class TransactionsService {
   ) {}
 
   async create(userId: string, createTransactionDto: CreateTransactionDto) {
-    const { bankAccountId, categoryId, date, name, type, value } =
-      createTransactionDto;
+    const { bankAccountId, categoryId, date, name, type, value } = createTransactionDto;
 
     await this.validateEntitiesOwnership({ userId, bankAccountId, categoryId });
 
@@ -50,13 +49,8 @@ export class TransactionsService {
     });
   }
 
-  async update(
-    userId: string,
-    transactionId: string,
-    updateTransactionDto: UpdateTransactionDto,
-  ) {
-    const { bankAccountId, categoryId, date, name, type, value } =
-      updateTransactionDto;
+  async update(userId: string, transactionId: string, updateTransactionDto: UpdateTransactionDto) {
+    const { bankAccountId, categoryId, date, name, type, value } = updateTransactionDto;
 
     await this.validateEntitiesOwnership({
       userId,
@@ -93,18 +87,9 @@ export class TransactionsService {
     transactionId?: string;
   }) {
     await Promise.all([
-      transactionId &&
-        this.validateTransactionOwnershipService.validate(
-          userId,
-          transactionId,
-        ),
-      bankAccountId &&
-        this.validateBankAccountOwnershipService.validate(
-          userId,
-          bankAccountId,
-        ),
-      categoryId &&
-        this.validateCategoryOwnershipService.validate(userId, categoryId),
+      transactionId && this.validateTransactionOwnershipService.validate(userId, transactionId),
+      bankAccountId && this.validateBankAccountOwnershipService.validate(userId, bankAccountId),
+      categoryId && this.validateCategoryOwnershipService.validate(userId, categoryId),
     ]);
   }
 }

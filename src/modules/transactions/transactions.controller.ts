@@ -1,17 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Param,
-  ParseIntPipe,
-  ParseUUIDPipe,
-  Post,
-  Put,
-  Query,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, ParseUUIDPipe, Post, Put, Query } from '@nestjs/common';
 import { ActiveUserId } from 'src/shared/decorators/activeUserId';
 import { OptionalParseEnumPipe } from 'src/shared/pipes/OptionalParseEnumPipe';
 import { OptionalParseUUIDPipe } from 'src/shared/pipes/OptionalParseUUIDPipe';
@@ -25,10 +12,7 @@ export class TransactionsController {
   constructor(private readonly transactionsService: TransactionsService) {}
 
   @Post()
-  create(
-    @ActiveUserId() userId: string,
-    @Body() createTransactionDto: CreateTransactionDto,
-  ) {
+  create(@ActiveUserId() userId: string, @Body() createTransactionDto: CreateTransactionDto) {
     return this.transactionsService.create(userId, createTransactionDto);
   }
 
@@ -50,24 +34,13 @@ export class TransactionsController {
   }
 
   @Put(':transactionId')
-  update(
-    @ActiveUserId() userId: string,
-    @Param('transactionId', ParseUUIDPipe) transactionId: string,
-    @Body() updateTransactionDto: UpdateTransactionDto,
-  ) {
-    return this.transactionsService.update(
-      userId,
-      transactionId,
-      updateTransactionDto,
-    );
+  update(@ActiveUserId() userId: string, @Param('transactionId', ParseUUIDPipe) transactionId: string, @Body() updateTransactionDto: UpdateTransactionDto) {
+    return this.transactionsService.update(userId, transactionId, updateTransactionDto);
   }
 
   @Delete(':transactionId')
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(
-    @ActiveUserId() userId: string,
-    @Param('transactionId', ParseUUIDPipe) transactionId: string,
-  ) {
+  remove(@ActiveUserId() userId: string, @Param('transactionId', ParseUUIDPipe) transactionId: string) {
     return this.transactionsService.remove(userId, transactionId);
   }
 }

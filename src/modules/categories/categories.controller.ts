@@ -1,14 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Param,
-  Post,
-  Put,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
 import { ActiveUserId } from 'src/shared/decorators/activeUserId';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -19,10 +9,7 @@ export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Post()
-  create(
-    @ActiveUserId() userId: string,
-    @Body() createCategoryDto: CreateCategoryDto,
-  ) {
+  create(@ActiveUserId() userId: string, @Body() createCategoryDto: CreateCategoryDto) {
     return this.categoriesService.create(userId, createCategoryDto);
   }
 
@@ -32,20 +19,13 @@ export class CategoriesController {
   }
 
   @Put(':categoryId')
-  update(
-    @ActiveUserId() userId: string,
-    @Param('categoryId') categoryId: string,
-    @Body() updateCategoryDto: UpdateCategoryDto,
-  ) {
+  update(@ActiveUserId() userId: string, @Param('categoryId') categoryId: string, @Body() updateCategoryDto: UpdateCategoryDto) {
     return this.categoriesService.update(userId, categoryId, updateCategoryDto);
   }
 
   @Delete(':categoryId')
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(
-    @ActiveUserId() userId: string,
-    @Param('categoryId') categoryId: string,
-  ) {
+  remove(@ActiveUserId() userId: string, @Param('categoryId') categoryId: string) {
     return this.categoriesService.remove(userId, categoryId);
   }
 }

@@ -1,12 +1,4 @@
-import {
-  IsDateString,
-  IsEnum,
-  IsNotEmpty,
-  IsNumber,
-  IsPositive,
-  IsString,
-  IsUUID,
-} from 'class-validator';
+import { IsDateString, IsEnum, IsNotEmpty, IsNumber, IsPositive, IsString, IsUUID } from 'class-validator';
 import { TransactionType } from '../entities/Transaction';
 
 export class CreateTransactionDto {

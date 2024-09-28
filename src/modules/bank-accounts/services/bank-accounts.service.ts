@@ -33,10 +33,7 @@ export class BankAccountsService {
     });
 
     return bankAccounts.map(({ transactions, ...bankAccount }) => {
-      const totalTransactions = transactions.reduce(
-        (acc, { type, value }) => acc + (type === 'INCOME' ? value : -value),
-        0,
-      );
+      const totalTransactions = transactions.reduce((acc, { type, value }) => acc + (type === 'INCOME' ? value : -value), 0);
 
       const currentBalance = bankAccount.initialBalance + totalTransactions;
 
@@ -47,11 +44,7 @@ export class BankAccountsService {
     });
   }
 
-  async update(
-    userId: string,
-    bankAccountId: string,
-    updateBankAccountDto: UpdateBankAccountDto,
-  ) {
+  async update(userId: string, bankAccountId: string, updateBankAccountDto: UpdateBankAccountDto) {
     await this.validateBankAccountOwnership.validate(userId, bankAccountId);
 
     const { color, initialBalance, name, type } = updateBankAccountDto;

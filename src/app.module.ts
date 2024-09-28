@@ -9,14 +9,7 @@ import { UsersModule } from './modules/users/users.module';
 import { DatabaseModule } from './shared/database/database.module';
 
 @Module({
-  imports: [
-    UsersModule,
-    DatabaseModule,
-    AuthModule,
-    CategoriesModule,
-    BankAccountsModule,
-    TransactionsModule,
-  ],
+  imports: [UsersModule, DatabaseModule, AuthModule, CategoriesModule, BankAccountsModule, TransactionsModule],
   controllers: [],
   providers: [
     {

@@ -7,18 +7,7 @@ import { UsersRepository } from './repositories/users.repositories';
 
 @Global()
 @Module({
-  providers: [
-    PrismaService,
-    UsersRepository,
-    CategoriesRepository,
-    BankAccountsRepository,
-    TransactionsRepository,
-  ],
-  exports: [
-    UsersRepository,
-    CategoriesRepository,
-    BankAccountsRepository,
-    TransactionsRepository,
-  ],
+  providers: [PrismaService, UsersRepository, CategoriesRepository, BankAccountsRepository, TransactionsRepository],
+  exports: [UsersRepository, CategoriesRepository, BankAccountsRepository, TransactionsRepository],
 })
 export class DatabaseModule {}

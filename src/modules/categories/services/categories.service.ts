@@ -23,11 +23,7 @@ export class CategoriesService {
     return this.categoriesRepo.findMany({ where: { userId } });
   }
 
-  async update(
-    userId: string,
-    categoryId: string,
-    updateCategoryDto: UpdateCategoryDto,
-  ) {
+  async update(userId: string, categoryId: string, updateCategoryDto: UpdateCategoryDto) {
     await this.validateCategoryOwnershipService.validate(userId, categoryId);
 
     const { icon, name, type } = updateCategoryDto;
