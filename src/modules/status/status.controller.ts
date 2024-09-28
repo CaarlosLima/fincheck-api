@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { IsPublic } from '../../shared/decorators/IsPublic';
+import { IsPublic } from 'src/shared/decorators/IsPublic';
 import { StatusService } from './status.service';
 
 @IsPublic()

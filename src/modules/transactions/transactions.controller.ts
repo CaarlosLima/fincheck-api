@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, ParseUUIDPipe, Post, Put, Query } from '@nestjs/common';
+import { ActiveUserId } from 'src/shared/decorators/ActiveUserId';
 import { OptionalParseEnumPipe } from 'src/shared/pipes/OptionalParseEnumPipe';
 import { OptionalParseUUIDPipe } from 'src/shared/pipes/OptionalParseUUIDPipe';
-import { ActiveUserId } from '../../shared/decorators/activeUserId';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
 import { TransactionType } from './entities/Transaction';
