@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Post, Put } from '@nestjs/common';
-import { ActiveUserId } from 'src/shared/decorators/activeUserId';
+import { ActiveUserId } from '../../shared/decorators/activeUserId';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { BankAccountsService } from './services/bank-accounts.service';
