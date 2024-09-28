@@ -16,6 +16,6 @@ export class StatusRepository {
   getDatabaseOpenedConnections() {
     const databaseName = process.env.POSTGRES_DB;
 
-    return this.prismaService.$queryRaw<[{ count: string }]>`SELECT COUNT(*)::int FROM pg_stat_activity WHERE datname = ${databaseName};`;
+    return this.prismaService.$queryRaw<[{ count: number }]>`SELECT COUNT(*)::int FROM pg_stat_activity WHERE datname = ${databaseName};`;
   }
 }
